@@ -1,8 +1,14 @@
+import container from "../depInjContainer";
 import { Router } from "express";
 import { CategoryController } from "../controllers/category.controller";
+import { INTERFACE_TYPE } from "../utils/appConstant";
 
 const router = Router();
 
-router.get("/", (req, res) => {});
+const categoryController = container.get<CategoryController>(
+  INTERFACE_TYPE.CategoryController
+);
+
+router.get("/", categoryController.getAllCategories);
 
 export default router;
