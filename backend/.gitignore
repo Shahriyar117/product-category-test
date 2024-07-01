@@ -1,0 +1,21 @@
+# dependencies
+/node_modules
+/coverage
+
+# misc
+.DS_Store
+.env
+.env.local
+.env.staging
+.env.production
+.env.development.local
+.env.test.local
+.env.production.local
+npm-debug.log*
+
+# editor
+/.vscode
+
+# Package related
+build/
+dist/
