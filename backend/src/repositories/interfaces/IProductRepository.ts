@@ -7,12 +7,11 @@ export interface IProductRepository {
     parentCategoryName?: string
   ): Promise<Product>;
 
-  getTotalCount(): Promise<number>;
-
   findAll(
     skip: number,
     limit: number,
     orderByField: string,
-    sortOrder: "asc" | "desc"
+    sortOrder: "asc" | "desc",
+    categoryId?: number
   ): Promise<{ products: Product[]; totalCount: number }>;
 }

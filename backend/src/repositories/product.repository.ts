@@ -94,19 +94,21 @@ export class ProductRepository implements IProductRepository {
     return createdProduct;
   }
 
-  async getTotalCount(): Promise<number> {
-    return this._prisma.product.count();
-  }
-
   async findAll(
     skip: number,
     limit: number,
     orderByField: string,
-    sortOrder: "asc" | "desc"
+    sortOrder: "asc" | "desc",
+    categoryId?: number // New parameter for category filter
   ): Promise<{ products: Product[]; totalCount: number }> {
+    const where = categoryId
+      ? { categories: { some: { id: categoryId } } }
+      : {};
+
     const products = await this._prisma.product.findMany({
-      take: limit,
+      where,
       skip,
+      take: limit,
       orderBy: {
         [orderByField]: sortOrder,
       },
@@ -115,7 +117,7 @@ export class ProductRepository implements IProductRepository {
       },
     });
 
-    const totalCount = await this.getTotalCount();
+    const totalCount = await this._prisma.product.count({ where });
 
     return {
       products: products.map((p) => CreateProductResponseDto(p)),

@@ -12,6 +12,7 @@ export interface IProductService {
     page: number,
     pageSize: number,
     orderByField: string,
-    sortOrder: "asc" | "desc"
+    sortOrder: "asc" | "desc",
+    categoryId?: number
   ): Promise<{ products: Product[]; totalPages: number; totalCount: number }>;
 }

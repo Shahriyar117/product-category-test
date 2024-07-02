@@ -53,16 +53,20 @@ export class ProductService implements IProductService {
     page: number,
     pageSize: number,
     orderByField: string,
-    sortOrder: "asc" | "desc"
+    sortOrder: "asc" | "desc",
+    categoryId?: number
   ): Promise<{ products: Product[]; totalPages: number; totalCount: number }> {
     const skip = (page - 1) * pageSize;
     const take = pageSize;
+
     const { products, totalCount } = await this.productRepository.findAll(
       skip,
       take,
       orderByField,
-      sortOrder
+      sortOrder,
+      categoryId
     );
+
     const totalPages = Math.ceil(totalCount / pageSize);
 
     return { products, totalPages, totalCount };
