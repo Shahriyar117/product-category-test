@@ -46,7 +46,9 @@ export class ProductController {
         limit = 10,
         orderByField = "name",
         sortOrder = "asc",
+        categoryId,
       } = req.query;
+
       const validSortOrder =
         sortOrder === "desc" || sortOrder === "asc" ? sortOrder : "asc";
 
@@ -55,7 +57,8 @@ export class ProductController {
           Number(page),
           Number(limit),
           orderByField.toString(),
-          validSortOrder
+          validSortOrder,
+          categoryId ? Number(categoryId) : undefined
         );
 
       res.status(200).json({ products, totalPages, totalCount });
