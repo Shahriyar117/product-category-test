@@ -53,7 +53,7 @@ export default function ProductList() {
       setOrderByField(field);
       setSortOrder("asc");
     }
-    setPage(1); // Reset page when sorting changes
+    setPage(1);
   };
 
   const handlePreviousPage = () => {
