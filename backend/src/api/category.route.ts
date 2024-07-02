@@ -9,6 +9,6 @@ const categoryController = container.get<CategoryController>(
   INTERFACE_TYPE.CategoryController
 );
 
-router.get("/", categoryController.getAllCategories);
+router.get("/", categoryController.getAllCategories.bind(categoryController));
 
 export default router;
