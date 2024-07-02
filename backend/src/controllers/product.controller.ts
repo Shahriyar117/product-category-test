@@ -30,12 +30,8 @@ export class ProductController {
       });
       res.status(201).json(product);
     } catch (error) {
-      if (error instanceof ValidationError || error instanceof NotFoundError) {
-        res.status(400).json({ error: error.message });
-      } else {
-        console.error("Error creating product:", error);
-        next(error);
-      }
+      console.error("Error creating product:", error);
+      next(error);
     }
   }
 

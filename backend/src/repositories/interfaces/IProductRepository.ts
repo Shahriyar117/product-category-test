@@ -7,6 +7,8 @@ export interface IProductRepository {
     parentCategoryName?: string
   ): Promise<Product>;
 
+  getTotalCount(): Promise<number>;
+
   findAll(
     skip: number,
     limit: number,
